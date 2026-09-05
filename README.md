@@ -68,6 +68,17 @@ DEMO tokens have no cash value. Anyone can mint them. The token can only be depl
 
 No API key or wallet secret is needed for local tests. Future deployment must use an encrypted wallet or interactive signer. Never save a deployment private key in an env file or commit it.
 
+## Guides and demo preparation
+
+- [Step-by-step local setup](docs/SETUP.md)
+- [Contract behavior and limits](docs/CONTRACT.md)
+- [Draft project explanation](submission.md)
+- [Captioned demo plans](demo/README.md)
+- [Submission evidence still needed](docs/READINESS.md)
+- [Brief presentation outline](docs/PRESENTATION-OUTLINE.md)
+
+The demo plans are not a recorded video. Public deployment, playback and final submission approval remain pending.
+
 ## Sources
 
 - [OpenZeppelin ERC20 contracts](https://docs.openzeppelin.com/contracts/5.x/api/token/erc20)

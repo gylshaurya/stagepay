@@ -1,0 +1,672 @@
+{
+  "measurement": "planned caption holds, not recorded playback",
+  "recorded": false,
+  "trial_target_cps": 17,
+  "event_numeric_limit_verified": false,
+  "variants": {
+    "baseline": {
+      "step_count": 40,
+      "hold_seconds": 124.7,
+      "max_cps": 48.5,
+      "over_target": 39,
+      "rows": [
+        {
+          "step": 1,
+          "planned_start_ms": 0,
+          "hold_ms": 4000,
+          "characters": 106,
+          "cps": 26.5,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 2,
+          "planned_start_ms": 4000,
+          "hold_ms": 3000,
+          "characters": 83,
+          "cps": 27.67,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 3,
+          "planned_start_ms": 7000,
+          "hold_ms": 2200,
+          "characters": 55,
+          "cps": 25.0,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 4,
+          "planned_start_ms": 9200,
+          "hold_ms": 4000,
+          "characters": 88,
+          "cps": 22.0,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 5,
+          "planned_start_ms": 13200,
+          "hold_ms": 2000,
+          "characters": 67,
+          "cps": 33.5,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 6,
+          "planned_start_ms": 15200,
+          "hold_ms": 2200,
+          "characters": 51,
+          "cps": 23.18,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 7,
+          "planned_start_ms": 17400,
+          "hold_ms": 2000,
+          "characters": 67,
+          "cps": 33.5,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 8,
+          "planned_start_ms": 19400,
+          "hold_ms": 2200,
+          "characters": 51,
+          "cps": 23.18,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 9,
+          "planned_start_ms": 21600,
+          "hold_ms": 2000,
+          "characters": 67,
+          "cps": 33.5,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 10,
+          "planned_start_ms": 23600,
+          "hold_ms": 2200,
+          "characters": 51,
+          "cps": 23.18,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 11,
+          "planned_start_ms": 25800,
+          "hold_ms": 4500,
+          "characters": 107,
+          "cps": 23.78,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 12,
+          "planned_start_ms": 30300,
+          "hold_ms": 4500,
+          "characters": 87,
+          "cps": 19.33,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 13,
+          "planned_start_ms": 34800,
+          "hold_ms": 2200,
+          "characters": 81,
+          "cps": 36.82,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 14,
+          "planned_start_ms": 37000,
+          "hold_ms": 4000,
+          "characters": 77,
+          "cps": 19.25,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 15,
+          "planned_start_ms": 41000,
+          "hold_ms": 2200,
+          "characters": 85,
+          "cps": 38.64,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 16,
+          "planned_start_ms": 43200,
+          "hold_ms": 2600,
+          "characters": 101,
+          "cps": 38.85,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 17,
+          "planned_start_ms": 45800,
+          "hold_ms": 3500,
+          "characters": 88,
+          "cps": 25.14,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 18,
+          "planned_start_ms": 49300,
+          "hold_ms": 2200,
+          "characters": 56,
+          "cps": 25.45,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 19,
+          "planned_start_ms": 51500,
+          "hold_ms": 2200,
+          "characters": 77,
+          "cps": 35.0,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 20,
+          "planned_start_ms": 53700,
+          "hold_ms": 2500,
+          "characters": 103,
+          "cps": 41.2,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 21,
+          "planned_start_ms": 56200,
+          "hold_ms": 4500,
+          "characters": 99,
+          "cps": 22.0,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 22,
+          "planned_start_ms": 60700,
+          "hold_ms": 2200,
+          "characters": 64,
+          "cps": 29.09,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 23,
+          "planned_start_ms": 62900,
+          "hold_ms": 2200,
+          "characters": 99,
+          "cps": 45.0,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 24,
+          "planned_start_ms": 65100,
+          "hold_ms": 2500,
+          "characters": 89,
+          "cps": 35.6,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 25,
+          "planned_start_ms": 67600,
+          "hold_ms": 3500,
+          "characters": 54,
+          "cps": 15.43,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 26,
+          "planned_start_ms": 71100,
+          "hold_ms": 2200,
+          "characters": 71,
+          "cps": 32.27,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 27,
+          "planned_start_ms": 73300,
+          "hold_ms": 4500,
+          "characters": 94,
+          "cps": 20.89,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 28,
+          "planned_start_ms": 77800,
+          "hold_ms": 2000,
+          "characters": 97,
+          "cps": 48.5,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 29,
+          "planned_start_ms": 79800,
+          "hold_ms": 2200,
+          "characters": 70,
+          "cps": 31.82,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 30,
+          "planned_start_ms": 82000,
+          "hold_ms": 3500,
+          "characters": 109,
+          "cps": 31.14,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 31,
+          "planned_start_ms": 85500,
+          "hold_ms": 3500,
+          "characters": 77,
+          "cps": 22.0,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 32,
+          "planned_start_ms": 89000,
+          "hold_ms": 2200,
+          "characters": 77,
+          "cps": 35.0,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 33,
+          "planned_start_ms": 91200,
+          "hold_ms": 4500,
+          "characters": 105,
+          "cps": 23.33,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 34,
+          "planned_start_ms": 95700,
+          "hold_ms": 4000,
+          "characters": 98,
+          "cps": 24.5,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 35,
+          "planned_start_ms": 99700,
+          "hold_ms": 4500,
+          "characters": 95,
+          "cps": 21.11,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 36,
+          "planned_start_ms": 104200,
+          "hold_ms": 4500,
+          "characters": 103,
+          "cps": 22.89,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 37,
+          "planned_start_ms": 108700,
+          "hold_ms": 3500,
+          "characters": 95,
+          "cps": 27.14,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 38,
+          "planned_start_ms": 112200,
+          "hold_ms": 3500,
+          "characters": 80,
+          "cps": 22.86,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 39,
+          "planned_start_ms": 115700,
+          "hold_ms": 4000,
+          "characters": 109,
+          "cps": 27.25,
+          "exceeds_trial_target": true
+        },
+        {
+          "step": 40,
+          "planned_start_ms": 119700,
+          "hold_ms": 5000,
+          "characters": 116,
+          "cps": 23.2,
+          "exceeds_trial_target": true
+        }
+      ]
+    },
+    "candidate": {
+      "step_count": 40,
+      "hold_seconds": 124.7,
+      "max_cps": 13.43,
+      "over_target": 0,
+      "rows": [
+        {
+          "step": 1,
+          "planned_start_ms": 0,
+          "hold_ms": 4000,
+          "characters": 48,
+          "cps": 12.0,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 2,
+          "planned_start_ms": 4000,
+          "hold_ms": 3000,
+          "characters": 29,
+          "cps": 9.67,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 3,
+          "planned_start_ms": 7000,
+          "hold_ms": 2200,
+          "characters": 18,
+          "cps": 8.18,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 4,
+          "planned_start_ms": 9200,
+          "hold_ms": 4000,
+          "characters": 30,
+          "cps": 7.5,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 5,
+          "planned_start_ms": 13200,
+          "hold_ms": 2000,
+          "characters": 12,
+          "cps": 6.0,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 6,
+          "planned_start_ms": 15200,
+          "hold_ms": 2200,
+          "characters": 14,
+          "cps": 6.36,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 7,
+          "planned_start_ms": 17400,
+          "hold_ms": 2000,
+          "characters": 12,
+          "cps": 6.0,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 8,
+          "planned_start_ms": 19400,
+          "hold_ms": 2200,
+          "characters": 14,
+          "cps": 6.36,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 9,
+          "planned_start_ms": 21600,
+          "hold_ms": 2000,
+          "characters": 12,
+          "cps": 6.0,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 10,
+          "planned_start_ms": 23600,
+          "hold_ms": 2200,
+          "characters": 14,
+          "cps": 6.36,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 11,
+          "planned_start_ms": 25800,
+          "hold_ms": 4500,
+          "characters": 55,
+          "cps": 12.22,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 12,
+          "planned_start_ms": 30300,
+          "hold_ms": 4500,
+          "characters": 44,
+          "cps": 9.78,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 13,
+          "planned_start_ms": 34800,
+          "hold_ms": 2200,
+          "characters": 21,
+          "cps": 9.55,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 14,
+          "planned_start_ms": 37000,
+          "hold_ms": 4000,
+          "characters": 28,
+          "cps": 7.0,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 15,
+          "planned_start_ms": 41000,
+          "hold_ms": 2200,
+          "characters": 26,
+          "cps": 11.82,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 16,
+          "planned_start_ms": 43200,
+          "hold_ms": 2600,
+          "characters": 27,
+          "cps": 10.38,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 17,
+          "planned_start_ms": 45800,
+          "hold_ms": 3500,
+          "characters": 26,
+          "cps": 7.43,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 18,
+          "planned_start_ms": 49300,
+          "hold_ms": 2200,
+          "characters": 17,
+          "cps": 7.73,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 19,
+          "planned_start_ms": 51500,
+          "hold_ms": 2200,
+          "characters": 19,
+          "cps": 8.64,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 20,
+          "planned_start_ms": 53700,
+          "hold_ms": 2500,
+          "characters": 25,
+          "cps": 10.0,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 21,
+          "planned_start_ms": 56200,
+          "hold_ms": 4500,
+          "characters": 41,
+          "cps": 9.11,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 22,
+          "planned_start_ms": 60700,
+          "hold_ms": 2200,
+          "characters": 21,
+          "cps": 9.55,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 23,
+          "planned_start_ms": 62900,
+          "hold_ms": 2200,
+          "characters": 24,
+          "cps": 10.91,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 24,
+          "planned_start_ms": 65100,
+          "hold_ms": 2500,
+          "characters": 21,
+          "cps": 8.4,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 25,
+          "planned_start_ms": 67600,
+          "hold_ms": 3500,
+          "characters": 24,
+          "cps": 6.86,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 26,
+          "planned_start_ms": 71100,
+          "hold_ms": 2200,
+          "characters": 24,
+          "cps": 10.91,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 27,
+          "planned_start_ms": 73300,
+          "hold_ms": 4500,
+          "characters": 43,
+          "cps": 9.56,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 28,
+          "planned_start_ms": 77800,
+          "hold_ms": 2000,
+          "characters": 23,
+          "cps": 11.5,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 29,
+          "planned_start_ms": 79800,
+          "hold_ms": 2200,
+          "characters": 24,
+          "cps": 10.91,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 30,
+          "planned_start_ms": 82000,
+          "hold_ms": 3500,
+          "characters": 47,
+          "cps": 13.43,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 31,
+          "planned_start_ms": 85500,
+          "hold_ms": 3500,
+          "characters": 19,
+          "cps": 5.43,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 32,
+          "planned_start_ms": 89000,
+          "hold_ms": 2200,
+          "characters": 21,
+          "cps": 9.55,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 33,
+          "planned_start_ms": 91200,
+          "hold_ms": 4500,
+          "characters": 32,
+          "cps": 7.11,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 34,
+          "planned_start_ms": 95700,
+          "hold_ms": 4000,
+          "characters": 37,
+          "cps": 9.25,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 35,
+          "planned_start_ms": 99700,
+          "hold_ms": 4500,
+          "characters": 48,
+          "cps": 10.67,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 36,
+          "planned_start_ms": 104200,
+          "hold_ms": 4500,
+          "characters": 48,
+          "cps": 10.67,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 37,
+          "planned_start_ms": 108700,
+          "hold_ms": 3500,
+          "characters": 42,
+          "cps": 12.0,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 38,
+          "planned_start_ms": 112200,
+          "hold_ms": 3500,
+          "characters": 26,
+          "cps": 7.43,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 39,
+          "planned_start_ms": 115700,
+          "hold_ms": 4000,
+          "characters": 50,
+          "cps": 12.5,
+          "exceeds_trial_target": false
+        },
+        {
+          "step": 40,
+          "planned_start_ms": 119700,
+          "hold_ms": 5000,
+          "characters": 49,
+          "cps": 9.8,
+          "exceeds_trial_target": false
+        }
+      ]
+    }
+  },
+  "controls": {
+    "same_actions": true,
+    "same_hold_times": true,
+    "only_captions_change": true,
+    "actual_action_latency_seconds": null,
+    "actual_video_seconds": null,
+    "playback_verified": false
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "name": "Stagepay guide handover",
+  "url": "http://127.0.0.1:4321",
+  "width": 1440,
+  "height": 900,
+  "planned_only": true,
+  "target_seconds": 180,
+  "target_basis": "Working target; the checked event rules specify no numeric limit.",
+  "steps": [
+    {
+      "action": "wait",
+      "hold_ms": 4000,
+      "caption": "Stagepay keeps a small freelance agreement, its delivery evidence and test-payment decisions in one place."
+    },
+    {
+      "action": "click",
+      "selector": ".toolbar button[data-ui=\"create\"]",
+      "hold_ms": 3000,
+      "caption": "The client begins by creating a project with a clear scope and separate milestones."
+    },
+    {
+      "action": "fill",
+      "selector": "input[name=\"title\"]",
+      "hold_ms": 2200,
+      "value": "Stagepay guide handover",
+      "caption": "Give this sample guide-writing job a short, clear name."
+    },
+    {
+      "action": "fill",
+      "selector": "textarea[name=\"scope\"]",
+      "hold_ms": 4000,
+      "value": "Demo job: deliver a local setup guide, a contract behavior guide, and a handover checklist. Each delivery must link to a real public Markdown file in this repository. These test tokens have no cash value.",
+      "caption": "Write down what will be delivered and explain that this is a demo job using test tokens."
+    },
+    {
+      "action": "fill",
+      "selector": "input[name=\"name0\"]",
+      "hold_ms": 2000,
+      "value": "Setup guide",
+      "caption": "Name milestone 1 so both people know which piece of work it covers."
+    },
+    {
+      "action": "fill",
+      "selector": "input[name=\"amount0\"]",
+      "hold_ms": 2200,
+      "value": "10",
+      "caption": "Set the number of test tokens held for milestone 1."
+    },
+    {
+      "action": "fill",
+      "selector": "input[name=\"name1\"]",
+      "hold_ms": 2000,
+      "value": "Behavior guide",
+      "caption": "Name milestone 2 so both people know which piece of work it covers."
+    },
+    {
+      "action": "fill",
+      "selector": "input[name=\"amount1\"]",
+      "hold_ms": 2200,
+      "value": "20",
+      "caption": "Set the number of test tokens held for milestone 2."
+    },
+    {
+      "action": "fill",
+      "selector": "input[name=\"name2\"]",
+      "hold_ms": 2000,
+      "value": "Handover checklist",
+      "caption": "Name milestone 3 so both people know which piece of work it covers."
+    },
+    {
+      "action": "fill",
+      "selector": "input[name=\"amount2\"]",
+      "hold_ms": 2200,
+      "value": "5",
+      "caption": "Set the number of test tokens held for milestone 3."
+    },
+    {
+      "action": "click",
+      "selector": "input[name=\"acknowledge\"]",
+      "hold_ms": 4500,
+      "caption": "The client confirms that the tokens have no cash value and a dispute can lock them until both people agree."
+    },
+    {
+      "action": "click",
+      "selector": "form[data-form=\"create\"] button.primary",
+      "hold_ms": 4500,
+      "expect": ".heading .status.awaiting_agreement",
+      "caption": "Funding sends real transactions to the local chain and waits for the resulting receipt."
+    },
+    {
+      "action": "select",
+      "selector": "#actor",
+      "hold_ms": 2200,
+      "value": "freelancer",
+      "caption": "Switch to the clearly labelled freelancer role used for this local demonstration."
+    },
+    {
+      "action": "click",
+      "selector": "button[data-action=\"join\"]",
+      "hold_ms": 4000,
+      "expect": ".heading .status.in_progress",
+      "caption": "The freelancer agrees to the exact recorded scope before submitting any work."
+    },
+    {
+      "action": "fill",
+      "selector": "form[data-form=\"submit\"][data-index=\"0\"] input[name=\"url\"]",
+      "hold_ms": 2200,
+      "value": "https://github.com/gylshaurya/stagepay/blob/main/demo/evidence/setup-note-initial.md",
+      "caption": "The first delivery links to a real but incomplete setup note saved in the repository."
+    },
+    {
+      "action": "fill",
+      "selector": "form[data-form=\"submit\"][data-index=\"0\"] textarea[name=\"note\"]",
+      "hold_ms": 2600,
+      "value": "Initial demo delivery: basic startup commands. Recovery steps still need to be added.",
+      "caption": "The delivery note explains what is included without claiming the missing recovery steps are finished."
+    },
+    {
+      "action": "click",
+      "selector": "form[data-form=\"submit\"][data-index=\"0\"] button",
+      "hold_ms": 3500,
+      "expect": "#milestones .milestone:first-of-type .status.submitted",
+      "caption": "The freelancer submits this link and note, and the contract records their evidence hash."
+    },
+    {
+      "action": "select",
+      "selector": "#actor",
+      "hold_ms": 2200,
+      "value": "client",
+      "caption": "Switch back to Client to review the submitted milestone."
+    },
+    {
+      "action": "click",
+      "selector": "#milestones summary:has-text(\"Request a revision\")",
+      "hold_ms": 2200,
+      "caption": "The client can request a revision instead of releasing the milestone payment."
+    },
+    {
+      "action": "fill",
+      "selector": "form[data-form=\"revision\"] textarea[name=\"note\"]",
+      "hold_ms": 2500,
+      "value": "Please include what to do when a transaction is interrupted.",
+      "caption": "Ask for the missing interrupted-transaction section so the next delivery has a clear acceptance target."
+    },
+    {
+      "action": "click",
+      "selector": "form[data-form=\"revision\"] button",
+      "hold_ms": 4500,
+      "expect": "#milestones .milestone:first-of-type .status.pending",
+      "caption": "A revision returns the milestone to pending and leaves the full amount in escrow without paying it."
+    },
+    {
+      "action": "select",
+      "selector": "#actor",
+      "hold_ms": 2200,
+      "value": "freelancer",
+      "caption": "The freelancer can now submit an updated link and delivery note."
+    },
+    {
+      "action": "fill",
+      "selector": "form[data-form=\"submit\"][data-index=\"0\"] input[name=\"url\"]",
+      "hold_ms": 2200,
+      "value": "https://github.com/gylshaurya/stagepay/blob/main/docs/SETUP.md",
+      "caption": "The revised delivery points to the full setup guide, including the interrupted-transaction section."
+    },
+    {
+      "action": "fill",
+      "selector": "form[data-form=\"submit\"][data-index=\"0\"] textarea[name=\"note\"]",
+      "hold_ms": 2500,
+      "value": "Revised demo delivery: the full guide includes interrupted transactions, preserved records and recovery limits.",
+      "caption": "Explain the concrete change so the client can check the revised work against the request."
+    },
+    {
+      "action": "click",
+      "selector": "form[data-form=\"submit\"][data-index=\"0\"] button",
+      "hold_ms": 3500,
+      "expect": "#milestones .milestone:first-of-type .status.submitted",
+      "caption": "Submit the revised evidence for another client review."
+    },
+    {
+      "action": "select",
+      "selector": "#actor",
+      "hold_ms": 2200,
+      "value": "client",
+      "caption": "The client reviews the new evidence before making the payment decision."
+    },
+    {
+      "action": "click",
+      "selector": "button[data-action=\"accept\"][data-index=\"0\"]",
+      "hold_ms": 4500,
+      "expect": "#milestones .milestone:first-of-type .status.accepted",
+      "caption": "Acceptance checks the current scope and evidence, then credits the exact 10 DEMO payment once."
+    },
+    {
+      "action": "click",
+      "selector": "summary:has-text(\"Agreement options\")",
+      "hold_ms": 2000,
+      "caption": "Agreement options contain the controls for changing unpaid work or ending the agreement together."
+    },
+    {
+      "action": "click",
+      "selector": "summary:has-text(\"Change the unpaid scope\")",
+      "hold_ms": 2200,
+      "caption": "Either party can propose a scope change for the remaining unpaid work."
+    },
+    {
+      "action": "fill",
+      "selector": "form[data-form=\"scope\"] textarea[name=\"scope\"]",
+      "hold_ms": 3500,
+      "value": "Demo job: keep the accepted setup guide. The behavior guide must explain paused transactions and the limits of recovery. Deliver a handover checklist too. Remaining deliveries must link to real public Markdown files. Test tokens have no cash value.",
+      "caption": "The new scope keeps the accepted guide and asks for the recovery limits to be included in the behavior guide."
+    },
+    {
+      "action": "click",
+      "selector": "form[data-form=\"scope\"] button",
+      "hold_ms": 3500,
+      "expect": ".proposal",
+      "caption": "Proposing a new scope does not make it binding until the other person agrees."
+    },
+    {
+      "action": "select",
+      "selector": "#actor",
+      "hold_ms": 2200,
+      "value": "freelancer",
+      "caption": "Switch to Freelancer to review the exact scope change proposed by the client."
+    },
+    {
+      "action": "click",
+      "selector": "button[data-action=\"agree_scope\"]",
+      "hold_ms": 4500,
+      "expect": "#milestones .milestone:nth-of-type(2) .status.pending",
+      "caption": "Both people agree to the new scope; accepted work stays paid and unpaid evidence must be submitted again."
+    },
+    {
+      "action": "scroll",
+      "selector": ".receipts",
+      "hold_ms": 4000,
+      "caption": "The receipt history records the scope change alongside the earlier delivery and payment decisions."
+    },
+    {
+      "action": "click",
+      "selector": "details.receipt:has-text(\"Both parties agreed to the new scope\") > summary",
+      "hold_ms": 4500,
+      "caption": "Open the confirmed local receipt to show the actual transaction hash and agreement fingerprint."
+    },
+    {
+      "action": "click",
+      "selector": "button[data-action=\"withdraw\"]",
+      "hold_ms": 4500,
+      "expect": "details.receipt:has-text(\"Freelancer withdrew\")",
+      "caption": "The freelancer withdraws available wallet credit while this project keeps its unpaid 25 DEMO in escrow."
+    },
+    {
+      "action": "scroll",
+      "selector": ".receipts",
+      "hold_ms": 3500,
+      "caption": "The withdrawal is recorded in the same history, and wallet credit shows what remains available."
+    },
+    {
+      "action": "click",
+      "selector": "button[data-ui=\"export\"]",
+      "hold_ms": 3500,
+      "caption": "Export the selected project record with its scope, evidence and receipt history."
+    },
+    {
+      "action": "click",
+      "selector": "summary:has-text(\"Network and demo wallets\")",
+      "hold_ms": 4000,
+      "caption": "These transactions used actual local contracts and demo wallets; public Sepolia deployment is not configured."
+    },
+    {
+      "action": "wait",
+      "hold_ms": 5000,
+      "caption": "This prototype has no cash-value tokens, production login, automatic receipt recovery or outside dispute arbitrator."
+    }
+  ],
+  "preconditions": {
+    "pending_transactions": 0,
+    "network_chain_id": 31337,
+    "initial_demo_role": "client",
+    "recording_is_a_new_demo_agreement": true,
+    "evidence_links_public": true,
+    "note": "The recorder does not enforce this metadata. Check it before a take."
+  }
+}
