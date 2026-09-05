@@ -1,0 +1,10 @@
+import {build} from 'esbuild';
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
+await mkdir('dist',{recursive:true});
+await build({entryPoints:['public-app/app.mjs'],bundle:true,format:'esm',minify:true,outfile:'dist/app.js',target:'es2022',legalComments:'eof'});
+await copyFile('public-app/index.html','dist/index.html');
+for(const f of ['font.woff2','font-600.woff2','font-700.woff2'])await copyFile('web/'+f,'dist/'+f);
+const css=(await readFile('web/style.css','utf8')).replaceAll("url('/font", "url('font");
+await writeFile('dist/style.css',css+'\n.hash{display:block;overflow-wrap:anywhere;font-size:.75rem;color:var(--muted);margin-top:12px}#open-project{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.sheet-body form+form{margin-top:18px}.warning p{overflow-wrap:anywhere}.create .sheet-body{padding-top:12px}\n');
+await writeFile('dist/.nojekyll','');
+console.log('Built static Sepolia workspace. Deployment status comes from public-app/config.json.');

@@ -88,3 +88,7 @@ The demo plans are not a recorded video. Public deployment, playback and final s
 - [3rd-Web-Hack rules](https://3rd-web-hack.devpost.com/rules)
 
 This is a test-token hackathon prototype. It has not had an independent security audit.
+
+## Public wallet workspace
+
+A static Sepolia wallet implementation is available in `public-app/`. See [Public workspace](docs/PUBLIC-WORKSPACE.md) for wallet actions, shared text, receipt recovery and encrypted test-wallet setup. Sepolia token and escrow deployments are now receipt-verified and source-verified on Sourcify. The release pins their bytecode hashes. See `docs/sepolia-deployment.json`; this remains test-token software, not a real-money service.

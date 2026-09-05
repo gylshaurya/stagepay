@@ -1,0 +1,134 @@
+{
+  "chainId": 11155111,
+  "scope": "Actual Sepolia transactions for an illustrative test agreement. No real client payment or prize claim.",
+  "projectId": "1",
+  "checkedAt": "2026-09-05T22:50:06.247Z",
+  "checks": {
+    "closed": true,
+    "remaining": "0",
+    "clientCredit": "0",
+    "freelancerCredit": "0"
+  },
+  "transactions": [
+    {
+      "hash": "0xad20a471866f60024c995fb459bb43fc3bb7e8cde3168e305130b31503f35f8b",
+      "action": "mint",
+      "projectId": "",
+      "status": "confirmed",
+      "block": 11643311
+    },
+    {
+      "hash": "0x0fce1c191b410856bd31b6bdabbd2842894d557d8d5479ed8d63b54bb1aa3e45",
+      "action": "approve",
+      "projectId": "",
+      "status": "confirmed",
+      "block": 11643312
+    },
+    {
+      "hash": "0x49f18c0d0fec7e358fa5ff30f47109020b8bd05bd1a27dbb0682021140a80b2d",
+      "action": "create",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643313
+    },
+    {
+      "hash": "0xc2371a09de9cec37e4b04f123f1d962d0f85fc483a21b49aaf9c0c13dda12965",
+      "action": "join",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643315
+    },
+    {
+      "hash": "0x9a2c29a1e6744e185829a50632cc9425672366e513231b3e448e7bb717d68dc5",
+      "action": "submit",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643316
+    },
+    {
+      "hash": "0xb1adf71a9be73ecf9dcb28ee406aed06efa2c1a0f90de973cb3e348c24ee7030",
+      "action": "accept",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643318
+    },
+    {
+      "hash": "0x929b0f48494f1832a097b1802e1451fa99c10a4afb46f0a5fce6466c0366c59c",
+      "action": "scope",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643320
+    },
+    {
+      "hash": "0x68255c07659a528d7abc8976f8c47ca2caef774d9988b861682f26987d97fd80",
+      "action": "agree_scope",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643321
+    },
+    {
+      "hash": "0x3628820438a7e6ec2e39e3e43e2c2cb3b72a0a1546c9890888729a419ee02a85",
+      "action": "dispute",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643322
+    },
+    {
+      "hash": "0xa1ea97d005b7bdb40340fbbe8d538fef60ec6f2959256ef1f2074ed3903f1f27",
+      "action": "settle",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643323
+    },
+    {
+      "hash": "0xfe62f2acda90a2eb7a7db5fc8b9f8ac4c1a3189eb82dafdf79f22c9c1a2f0765",
+      "action": "agree_settlement",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643324
+    },
+    {
+      "hash": "0xf2fe3587a29949157ff1e112b7e63adb808a274ea9b8eff5e69ab303c05e96ae",
+      "action": "withdraw",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643326
+    },
+    {
+      "hash": "0x8c4fd21ef84f9f288b94d9fb1854af6f39797bbab6d53441ab3e61f0bdb6cc14",
+      "action": "withdraw",
+      "projectId": "1",
+      "status": "confirmed",
+      "block": 11643328
+    }
+  ],
+  "example": {
+    "format": "stagepay-text-v1",
+    "chainId": 11155111,
+    "escrow": "0xc7455caAC7f58d2Ed5BBe2f084b7b90A883862c2",
+    "projectId": "1",
+    "metadata": {
+      "title": "Campus club website \u00b7 test agreement",
+      "scope": "Keep the accepted landing page. Replace the remaining handover with a short setup checklist. This remains an illustrative test agreement.",
+      "milestones": [
+        {
+          "name": "Landing page"
+        },
+        {
+          "name": "Handover guide"
+        }
+      ],
+      "evidence": {
+        "0": {
+          "note": "The landing page and navigation are ready for review. This link is the Stagepay source used for this test.",
+          "url": "https://github.com/gylshaurya/stagepay",
+          "hash": "0xfc22476233eb77fba157af7ad9aeee11f82564d98568157f2591416500b74b9d"
+        }
+      },
+      "dispute": {
+        "note": "Agree on a smaller final handover for this test.",
+        "txHash": "0x3628820438a7e6ec2e39e3e43e2c2cb3b72a0a1546c9890888729a419ee02a85"
+      }
+    }
+  }
+}

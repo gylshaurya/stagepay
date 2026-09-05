@@ -1,0 +1,43 @@
+{
+  "chainId": 11155111,
+  "operations": {
+    "token": {
+      "hash": "0x80969fcff9882f023204b56cccceaf2a134c8a3ef45ea37aafbb880ebfcd5b90",
+      "nonce": 0,
+      "kind": "token",
+      "createdAt": "2026-09-05T22:44:14.565Z",
+      "address": "0x38Ac218BA630C23D1E2003C4530740A4acb77551",
+      "block": 11643302
+    },
+    "escrow": {
+      "hash": "0xed9f32fce16277353fd1d0929f0e86026320d3b81ad5be1fe0415edad9642175",
+      "nonce": 1,
+      "kind": "escrow",
+      "createdAt": "2026-09-05T22:44:28.822Z",
+      "address": "0xc7455caAC7f58d2Ed5BBe2f084b7b90A883862c2",
+      "block": 11643303
+    },
+    "freelancer-gas": {
+      "hash": "0xb2b68905e88c0390bd55939a70d9182569347b36a47225c8c5cefdbb0d1f7475",
+      "nonce": 2,
+      "kind": "freelancer-gas",
+      "createdAt": "2026-09-05T22:44:40.548Z",
+      "to": "0x4881B3c95e826579894c721e2A18B8C92Ec6BD56",
+      "value": "5000000000000000",
+      "block": 11643304
+    }
+  },
+  "deployer": "0x156cFe009BF38C36Ea74C7dAAE7C1866cd1Ae4CF",
+  "config": {
+    "chainId": 11155111,
+    "name": "Ethereum Sepolia",
+    "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+    "explorer": "https://sepolia.etherscan.io",
+    "escrow": "0xc7455caAC7f58d2Ed5BBe2f084b7b90A883862c2",
+    "token": "0x38Ac218BA630C23D1E2003C4530740A4acb77551",
+    "escrowCodeHash": "0x60f0a810af25849bf91993833527e6352916df33f27f12adf0da3a4f267d749c",
+    "tokenCodeHash": "0x70b6f595701003498b1c7b933406db5decbbdfbab678bd8d2aaadf58ed28b497",
+    "deploymentBlock": 11643303,
+    "deploymentStatus": "Deployed and receipt-verified on Ethereum Sepolia"
+  }
+}

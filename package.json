@@ -11,10 +11,16 @@
     "test:service": "python3 -m unittest discover -s tests -v",
     "start": "python3 scripts/service.py start",
     "stop": "python3 scripts/service.py stop",
-    "test:ui": "node --test tests/test_ui.mjs"
+    "test:ui": "node --test tests/test_ui.mjs",
+    "build:public": "forge build && node scripts/build-public.mjs",
+    "test:public": "node --test tests/test_public.mjs"
   },
   "dependencies": {
     "@fontsource/source-sans-3": "5.3.0",
-    "@openzeppelin/contracts": "5.6.1"
+    "@openzeppelin/contracts": "5.6.1",
+    "ethers": "6.17.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }

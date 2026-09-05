@@ -1,0 +1,12 @@
+{
+  "chainId": 11155111,
+  "name": "Ethereum Sepolia",
+  "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+  "explorer": "https://sepolia.etherscan.io",
+  "escrow": "0xc7455caAC7f58d2Ed5BBe2f084b7b90A883862c2",
+  "token": "0x38Ac218BA630C23D1E2003C4530740A4acb77551",
+  "escrowCodeHash": "0x60f0a810af25849bf91993833527e6352916df33f27f12adf0da3a4f267d749c",
+  "tokenCodeHash": "0x70b6f595701003498b1c7b933406db5decbbdfbab678bd8d2aaadf58ed28b497",
+  "deploymentBlock": 11643303,
+  "deploymentStatus": "Deployed and receipt-verified on Ethereum Sepolia"
+}
