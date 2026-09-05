@@ -2,7 +2,41 @@
 
 Stagepay is a milestone desk for student freelancers. The client sets aside test tokens, both people agree on the work, and each payment becomes available when the client accepts the submitted evidence.
 
-This first milestone implements the contracts. The product interface, public testnet deployment and video are still being built. No real payment service or live deployment is claimed here.
+The local workspace includes agreement funding, delivery links, revision requests, milestone acceptance, scope changes, mutual settlement and receipt history. It calls real contracts on an isolated Anvil chain and saves project records in SQLite. Public testnet deployment and the final video are still being built.
+
+## Run the workspace
+
+Install Node.js, Python 3.10 or newer, and Foundry. Ensure `forge`, `cast` and `anvil` are on your PATH.
+
+```sh
+npm ci --ignore-scripts
+npm run chain
+npm start
+```
+
+Open http://127.0.0.1:4321. Use the Client demo role to fund a project, switch to Freelancer to agree and submit work, then return to Client to review it. The role switch is a local demonstration, not account authentication. The server binds only to loopback. Do not expose it with a tunnel or deploy this local signer service to a public host.
+
+`npm stop` stops only the owned workspace process. `npm run dev` runs it in the foreground instead. The chain uses its own loopback port 18545 and persists under ignored `.local/`. The startup script refuses to take over an unrelated process. No wallet secret or API key is needed: Anvil supplies public, unlocked demo accounts. These accounts must never receive real funds.
+
+The network panel shows the actual contract and demo wallet addresses. Sepolia is explicitly unconfigured. A public version needs a wallet signer and a separate authenticated service before it can be deployed.
+
+## Verify the service
+
+With the local chain running:
+
+```sh
+npm run test:service
+```
+
+Integration tests deploy separate test contracts so they do not alter workspace agreements. They check real transaction receipts, exact payment amounts, repeat acceptance, revisions, changed scope, disputes, cancellation, stale decisions, request replay and uncertain transaction handling.
+
+Project text and history live in `.local/workspace.sqlite3`. `Export record` downloads the selected project's scope, evidence and confirmed receipt history. Available wallet credit covers all projects for that wallet.
+
+## Interrupted transactions
+
+The service journals the intended transaction, sender nonce and original action before broadcasting. A missing response or receipt pauses later writes, preventing an automatic duplicate payment. Read-only project records remain available. A pending action requires reconciliation against the local node before writes resume; automatic recovery is not implemented yet. Do not delete the database or retry funding to clear it. Preserve `.local/` and inspect the recorded nonce and receipt first.
+
+The local HTTP service checks its Host and Origin headers and accepts only JSON writes. These checks reduce accidental cross-site actions; they do not turn local demo roles into multi-user authentication.
 
 ## Run the contract checks
 

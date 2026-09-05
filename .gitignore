@@ -11,3 +11,11 @@ coverage/
 out/
 cache/
 broadcast/
+
+.local/
+__pycache__/
+
+# Local planning and design generation records
+PREPARATION.md
+SELECTED-IDEA.json
+.impeccable/mocks/

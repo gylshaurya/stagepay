@@ -3,6 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "description": "A milestone desk for student freelancers, using test payments.",
-  "scripts": {"test:contracts": "forge test", "build:contracts": "forge build"},
-  "dependencies": {"@openzeppelin/contracts": "5.6.1"}
+  "scripts": {
+    "test:contracts": "forge test",
+    "build:contracts": "forge build",
+    "chain": "python3 scripts/local_chain.py",
+    "dev": "python3 server.py",
+    "test:service": "python3 -m unittest discover -s tests -v",
+    "start": "python3 scripts/service.py start",
+    "stop": "python3 scripts/service.py stop"
+  },
+  "dependencies": {
+    "@fontsource/source-sans-3": "5.3.0",
+    "@openzeppelin/contracts": "5.6.1"
+  }
 }
