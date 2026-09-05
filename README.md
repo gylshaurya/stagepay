@@ -26,7 +26,10 @@ With the local chain running:
 
 ```sh
 npm run test:service
+npm run test:ui
 ```
+
+UI checks cover closed milestone labels, the selected project export payload and escaped project text. They do not verify a native browser download.
 
 Integration tests deploy separate test contracts so they do not alter workspace agreements. They check real transaction receipts, exact payment amounts, repeat acceptance, revisions, changed scope, disputes, cancellation, stale decisions, request replay and uncertain transaction handling.
 

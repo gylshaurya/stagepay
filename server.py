@@ -48,6 +48,20 @@ def amount(value):
     whole,_,fraction=value.partition('.')
     return int(whole)*10**18+int(fraction.ljust(2,'0'))*10**16
 
+def evidence_link(value):
+    url=text(value,'Evidence link',2000)
+    try:
+        parsed=urlparse(url)
+        port=parsed.port  # Access validates malformed and out-of-range ports.
+        valid=(parsed.scheme in ('http','https') and parsed.hostname
+               and parsed.username is None and parsed.password is None
+               and not any(ch.isspace() or ord(ch)<32 or ord(ch)==127 for ch in url)
+               and '\\' not in url)
+    except ValueError:
+        valid=False
+    if not valid: raise Problem('Use a complete http or https link without spaces or login details.')
+    return url
+
 def send(c,operation,to,signature,args,actor,request=None):
     cfg=chain();sender=cfg[actor]
     data=calldata(signature,*args)
@@ -138,8 +152,7 @@ def perform(request):
                 m=p['milestones'][index]
             if kind=='join':sig='join(uint256,bytes32)';args+=[p['scope_hash']];label='Freelancer agreed to the scope'
             elif kind=='submit':
-                note=text(body.get('note'),'Delivery note',2000);url=text(body.get('url'),'Evidence link',2000)
-                if urlparse(url).scheme not in ('https','http'): raise Problem('Use an http or https evidence link.')
+                note=text(body.get('note'),'Delivery note',2000);url=evidence_link(body.get('url'))
                 evidence={'note':note,'url':url,'hash':digest(json.dumps({'note':note,'url':url},sort_keys=True,separators=(',',':')))}
                 sig='submit(uint256,uint8,bytes32)';args += [index,evidence['hash']];label='Freelancer submitted '+m['name']
             elif kind=='accept':

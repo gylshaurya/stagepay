@@ -10,7 +10,8 @@
     "dev": "python3 server.py",
     "test:service": "python3 -m unittest discover -s tests -v",
     "start": "python3 scripts/service.py start",
-    "stop": "python3 scripts/service.py stop"
+    "stop": "python3 scripts/service.py stop",
+    "test:ui": "node --test tests/test_ui.mjs"
   },
   "dependencies": {
     "@fontsource/source-sans-3": "5.3.0",

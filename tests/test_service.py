@@ -94,6 +94,16 @@ class WorkspaceTests(unittest.TestCase):
         self.create();self.act('join','freelancer')
         with self.assertRaises(server.Problem):self.act('submit','freelancer',{'index':0,'note':'Work','url':'javascript:alert(1)'})
         with self.assertRaisesRegex(server.Problem,'object'):server.perform(self.request('submit',body=['not an object']))
+    def test_malformed_evidence_links_never_send_a_transaction(self):
+        self.create();self.act('join','freelancer')
+        invalid=['http:', 'https:///missing-host', 'https://user:password@example.com/work', 'https://exa mple.com/work', 'https://example.com:bad/work', 'https://example.com/\nwork']
+        for url in invalid:
+            with self.subTest(url=url):
+                before=server.rpc('eth_getTransactionCount',[self.cfg['freelancer'],'latest'])
+                with self.assertRaises(server.Problem):
+                    self.act('submit','freelancer',{'index':0,'note':'Invalid link must not reach the chain.','url':url})
+                self.assertEqual(server.rpc('eth_getTransactionCount',[self.cfg['freelancer'],'latest']),before)
+
     def test_uncertain_broadcast_is_journaled_and_blocks_retries(self):
         self.create();req=self.request('join','freelancer');real_rpc=server.rpc
         def interrupted(method,params=None):
