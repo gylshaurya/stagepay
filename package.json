@@ -1,0 +1,8 @@
+{
+  "name": "stagepay",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A milestone desk for student freelancers, using test payments.",
+  "scripts": {"test:contracts": "forge test", "build:contracts": "forge build"},
+  "dependencies": {"@openzeppelin/contracts": "5.6.1"}
+}
