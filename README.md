@@ -37,7 +37,7 @@ Project text and history live in `.local/workspace.sqlite3`. `Export record` dow
 
 ## Interrupted transactions
 
-The service journals the intended transaction, sender nonce and original action before broadcasting. A missing response or receipt pauses later writes, preventing an automatic duplicate payment. Read-only project records remain available. A pending action requires reconciliation against the local node before writes resume; automatic recovery is not implemented yet. Do not delete the database or retry funding to clear it. Preserve `.local/` and inspect the recorded nonce and receipt first.
+The service journals the intended transaction, sender nonce and original action before broadcasting. A missing response or receipt pauses later writes, preventing an automatic duplicate payment. Read-only project records remain available. Use **Check pending receipts** to match the saved sender, nonce, destination and calldata against the local chain. Recovery never broadcasts: confirmed actions apply once, reverted actions leave project records unchanged, and unavailable or mismatched transactions keep writes paused. A lost transaction hash is searched within the latest 128 blocks. Older unmatched or legacy intents remain paused for inspection. If funding stopped after minting or approval, **Continue funding** resumes the saved request and skips confirmed setup steps. Do not delete `.local/` or start a duplicate funding request to clear a warning.
 
 The local HTTP service checks its Host and Origin headers and accepts only JSON writes. These checks reduce accidental cross-site actions; they do not turn local demo roles into multi-user authentication.
 

@@ -8,7 +8,7 @@ This is a working list, not an approval or a completed package. Keep the existin
 | Contract behavior | Local contract and service tests | Recheck failure paths for the deployed version |
 | Public testnet | Local Anvil only; Sepolia unconfigured | Create a project wallet with protected signing, find a free faucet route, deploy and verify contracts and explorer receipts |
 | Public app | Loopback signer and demo roles | Replace local signing, add needed access controls and verify free hosting without overage |
-| Recovery | Uncertain actions are journaled and writes pause | Reconcile confirmed, reverted and still-pending actions safely |
+| Recovery | Confirmed, reverted, unavailable and mismatched receipts checked; saved funding can resume without duplicate minting | Old legacy intents or missing hashes outside the 128-block search need inspection |
 | Sponsor evidence | No named required sponsor in the checked rules | Recheck any updated sponsor or track requirements; show only code that is actually integrated |
 | Demo | Two storyboard plans and recording instructions | Record real actions, check actual duration, full playback, captions and public access |
 | Presentation | Five-part outline | Export the final format accepted by the organizer |

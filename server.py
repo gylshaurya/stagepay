@@ -62,14 +62,14 @@ def evidence_link(value):
     if not valid: raise Problem('Use a complete http or https link without spaces or login details.')
     return url
 
-def send(c,operation,to,signature,args,actor,request=None):
+def send(c,operation,to,signature,args,actor,request=None,effect=None,phase=None):
     cfg=chain();sender=cfg[actor]
     data=calldata(signature,*args)
     # Estimate before recording/broadcasting so ordinary contract reverts are known failures.
     try: gas=rpc('eth_estimateGas',[{'from':sender,'to':to,'data':data}])
     except RuntimeError as e: raise Problem('The contract rejected this action. Refresh the project and check your role and its state.') from e
     intent={'from':sender,'to':to,'data':data,'nonce':rpc('eth_getTransactionCount',[sender,'pending'])}
-    journal={'transaction':intent,'request':request}
+    journal={'transaction':intent,'request':request,'effect':effect,'phase':phase,'start_block':int(rpc('eth_blockNumber'),16)}
     c.execute('INSERT INTO actions(id,project,state,body) VALUES(?,?,?,?)',(operation,'chain','pending',json.dumps(journal)));c.commit()
     try:
         tx=rpc('eth_sendTransaction',[dict(intent,gas=hex(int(gas,16)+50000))])
@@ -100,7 +100,11 @@ def snapshot():
         try:
             cfg=chain();health={'ready':True,**cfg,'client_credit':str(read_uint(cfg['escrow'],'credits(address)',cfg['client'])),'freelancer_credit':str(read_uint(cfg['escrow'],'credits(address)',cfg['freelancer']))}
         except Exception: health={'ready':False,'name':'Local Anvil','chain_id':31337,'message':'Local chain is unavailable. Run npm run chain and refresh. Your saved project records are kept.'}
-        return {'projects':items,'network':health,'pending':[dict(x) for x in pending],'mode':'local_demo','public_testnet':{'chain_id':11155111,'name':'Ethereum Sepolia','configured':False}}
+        resumable={}
+        for r in c.execute("SELECT body FROM actions WHERE state='done'"):
+            j=json.loads(r['body']);req=j.get('request')
+            if j.get('phase')=='setup' and req and not c.execute('SELECT 1 FROM actions WHERE id=?',(req['request_id'],)).fetchone():resumable[req['request_id']]={'id':req['request_id'],'title':req['body']['title']}
+        return {'resumable':list(resumable.values()),'projects':items,'network':health,'pending':[dict(x) for x in pending],'mode':'local_demo','public_testnet':{'chain_id':11155111,'name':'Ethereum Sepolia','configured':False}}
 
 def perform(request):
     with LOCK,closing(database()) as c,c:
@@ -133,14 +137,17 @@ def perform(request):
             deposit=sum(int(m['amount']) for m in milestones)
             for suffix,to,sig,args in [('-mint',cfg['token'],'mint(address,uint256)',[cfg['client'],deposit]),('-approve',cfg['token'],'approve(address,uint256)',[cfg['escrow'],deposit])]:
                 key=op+suffix
-                if not c.execute("SELECT 1 FROM actions WHERE id=? AND state='done'",(key,)).fetchone():
-                    setup=send(c,key,to,sig,args,actor)
+                attempts=c.execute('SELECT * FROM actions WHERE id=? OR id LIKE ? ORDER BY rowid',(key,key+'-retry-%')).fetchall()
+                if any(json.loads(a['body']).get('request') not in(None,request) for a in attempts):raise Problem('This request ID belongs to a different funding request.')
+                if not any(a['state']=='done' for a in attempts):
+                    if attempts:key+='-retry-'+str(len(attempts))
+                    setup=send(c,key,to,sig,args,actor,request,phase='setup')
                     c.execute("UPDATE actions SET state='done',result=? WHERE id=?",(json.dumps(setup),key));c.commit()
             chain_id=read_uint(cfg['escrow'],'nextProject()')
             hashed=digest(scope)
-            receipt=send(c,op,cfg['escrow'],'create(address,bytes32,uint256[])',[cfg['freelancer'],hashed,'['+','.join(m['amount'] for m in milestones)+']'],actor,request)
             p={'id':str(chain_id),'title':title,'scope':scope,'scope_hash':hashed,'version':1,'status':'awaiting_agreement','milestones':milestones,'history':[],'proposal':None,'proposal_nonce':0,'disputed':False,'remaining':str(deposit)}
             label='Client funded the agreement'
+            receipt=send(c,op,cfg['escrow'],'create(address,bytes32,uint256[])',[cfg['freelancer'],hashed,'['+','.join(m['amount'] for m in milestones)+']'],actor,request,{'project':p,'action':kind,'label':label,'actor':actor})
         else:
             p=get_project(c,str(request.get('project_id')))
             if request.get('version')!=p['version']: raise Problem('This project changed in another tab. Refresh before deciding.')
@@ -180,7 +187,6 @@ def perform(request):
             elif kind=='cancel':sig='cancelBeforeJoin(uint256)';label='Client cancelled before work began'
             elif kind=='withdraw':sig='withdraw(address)';args=[cfg[actor]];label=actor.capitalize()+' withdrew available test tokens'
             else: raise Problem('Unknown project action.')
-            receipt=send(c,op,cfg['escrow'],sig,args,actor,request)
             if kind=='join':p['status']='in_progress'
             elif kind=='submit':m['state']='submitted';m['evidence']=evidence;m.pop('revision',None)
             elif kind=='accept':
@@ -197,11 +203,75 @@ def perform(request):
             elif kind=='settle':p['proposal_nonce']+=1;p['proposal']={'kind':'settlement','amount':str(payout),'by':actor}
             elif kind in ('agree_settlement','cancel'):p['status']='closed';p['remaining']='0';p['proposal']=None
             p['version']+=1
+            receipt=send(c,op,cfg['escrow'],sig,args,actor,request,{'project':p,'action':kind,'label':label,'actor':actor})
+        return apply_effect(c,op,{'project':p,'action':kind,'label':label,'actor':actor},receipt)
+
+def apply_effect(c,op,effect,receipt):
+        p=effect['project'];kind=effect['action'];label=effect['label'];actor=effect['actor']
+        row=c.execute('SELECT version FROM projects WHERE id=?',(p['id'],)).fetchone()
+        if (kind=='create' and row)or(kind!='create' and(not row or row['version']!=p['version']-1)):
+            raise Problem('The saved project version differs from the pending intent. Keep it paused for inspection.')
+        if kind=='create':
+            raw=rpc('eth_getTransactionReceipt',[receipt['hash']])
+            topic=digest('Created(uint256,address,address,bytes32,uint256)')
+            created=[log for log in (raw or {}).get('logs',[]) if log['address'].lower()==receipt['contract'].lower() and log.get('topics',[None])[0]==topic]
+            if len(created)!=1 or int(created[0]['topics'][1],16)!=int(p['id']):raise Problem('The created agreement ID differs from the saved intent. Keep it paused for inspection.')
         p['history'].append({'action':kind,'label':label,'at':time.time(),'actor':actor,'scope_hash':p['scope_hash'],'receipt':receipt})
         result={'project':p,'receipt':receipt}
         c.execute('INSERT INTO projects VALUES(?,?,?) ON CONFLICT(id) DO UPDATE SET version=excluded.version,body=excluded.body',(p['id'],p['version'],json.dumps(p)))
         c.execute("UPDATE actions SET state='done',result=? WHERE id=?",(json.dumps(result),op));c.commit()
         return result
+
+def reconcile():
+    with LOCK,closing(database()) as c,c:
+        cfg=chain();outcomes=[]
+        for row in c.execute("SELECT * FROM actions WHERE state='pending' ORDER BY rowid").fetchall():
+            journal=json.loads(row['body']);intent=journal['transaction'];txhash=row['tx']
+            if intent['from'].lower()not in(cfg['client'].lower(),cfg['freelancer'].lower())or intent['to'].lower()not in(cfg['escrow'].lower(),cfg['token'].lower()):
+                outcomes.append({'id':row['id'],'state':'pending','message':'The pending intent belongs to another deployment.'});continue
+            if not txhash:
+                head=int(rpc('eth_blockNumber'),16);first=max(0,head-127,journal.get('start_block',0))
+                for height in range(head,first-1,-1):
+                    block=rpc('eth_getBlockByNumber',[hex(height),True])
+                    candidate=next((t for t in(block or {}).get('transactions',[])if t['from'].lower()==intent['from'].lower()and int(t['nonce'],16)==int(intent['nonce'],16)),None)
+                    if candidate:txhash=candidate['hash'];break
+            if not txhash:
+                outcomes.append({'id':row['id'],'state':'pending','message':'No matching mined transaction found in the bounded block search. Nothing was resent.'});continue
+            transaction=rpc('eth_getTransactionByHash',[txhash]);receipt=rpc('eth_getTransactionReceipt',[txhash])
+            if not transaction or not receipt:
+                outcomes.append({'id':row['id'],'state':'pending','message':'The transaction still has no available receipt. Nothing was resent.'});continue
+            same=(transaction['from'].lower()==intent['from'].lower()and(transaction.get('to')or'').lower()==intent['to'].lower()and transaction.get('input',transaction.get('data','')).lower()==intent['data'].lower()and int(transaction['nonce'],16)==int(intent['nonce'],16)and int(transaction.get('value','0x0'),16)==0 and receipt['transactionHash'].lower()==txhash.lower())
+            if not same:
+                outcomes.append({'id':row['id'],'state':'pending','message':'The chain transaction does not match the saved intent. Inspection is required.'});continue
+            c.execute('UPDATE actions SET tx=? WHERE id=?',(txhash,row['id']))
+            if receipt['status']=='0x0':
+                c.execute("UPDATE actions SET state='reverted' WHERE id=?",(row['id'],));c.commit();outcomes.append({'id':row['id'],'state':'reverted','message':'The transaction reverted. No project change was applied.'});continue
+            if receipt['status']!='0x1':
+                outcomes.append({'id':row['id'],'state':'pending','message':'The receipt status is unknown.'});continue
+            confirmed={'hash':txhash,'block':int(receipt['blockNumber'],16),'chain_id':31337,'from':intent['from'],'contract':intent['to'],'status':'confirmed'}
+            effect=journal.get('effect')
+            if effect:
+                try:apply_effect(c,row['id'],effect,confirmed)
+                except Problem as e:outcomes.append({'id':row['id'],'state':'pending','message':str(e)});continue
+                outcomes.append({'id':row['id'],'state':'done','project_id':effect['project']['id'],'message':'Confirmed transaction applied once. Nothing was resent.'})
+            elif journal.get('phase')=='setup' or journal.get('request')is None:
+                c.execute("UPDATE actions SET state='done',result=? WHERE id=?",(json.dumps(confirmed),row['id']));c.commit()
+                outcomes.append({'id':row['id'],'state':'done','message':'Setup receipt confirmed. Resume the original funding request to complete the remaining steps.'})
+            else:
+                outcomes.append({'id':row['id'],'state':'pending','message':'This older intent has no saved project effect. Its receipt is kept for manual reconciliation.'})
+        c.commit()
+        return {'outcomes':outcomes,'state':snapshot()}
+
+def resume(operation):
+    with LOCK:
+        saved=None
+        with closing(database()) as c:
+            for row in c.execute('SELECT body FROM actions ORDER BY rowid').fetchall():
+                journal=json.loads(row['body']);request=journal.get('request')
+                if journal.get('phase')=='setup' and request and request['request_id']==operation:
+                    saved=request;break
+        if saved:return perform(saved)
+    raise Problem('No saved funding request was found.')
 
 class Handler(BaseHTTPRequestHandler):
     def log_message(self,*args):pass
@@ -221,13 +291,13 @@ class Handler(BaseHTTPRequestHandler):
         self.reply(200,p.read_bytes(),mime)
     def do_POST(self):
         if not self.trusted() or self.headers.get('Origin') not in (f'http://127.0.0.1:{PORT}',f'http://localhost:{PORT}') or self.headers.get('Content-Type')!='application/json':return self.reply(403,{'error':'Open Stagepay locally to make a change.'})
-        if self.path!='/api/action':return self.reply(404,{'error':'Not found'})
+        if self.path not in('/api/action','/api/reconcile','/api/resume'):return self.reply(404,{'error':'Not found'})
         try:
             length=int(self.headers.get('Content-Length','0'))
             if not 0<length<=30000:raise Problem('Request is too large or empty.')
             data=json.loads(self.rfile.read(length))
             if not isinstance(data,dict):raise Problem('Invalid request.')
-            self.reply(200,perform(data))
+            self.reply(200,reconcile() if self.path=='/api/reconcile' else resume(data.get('request_id')) if self.path=='/api/resume' else perform(data))
         except (Problem,ValueError,TypeError,KeyError) as e:self.reply(400,{'error':str(e)})
         except Exception:self.reply(503,{'error':'The local chain or service did not finish this action. Refresh and inspect pending receipts before retrying.'})
 if __name__=='__main__':

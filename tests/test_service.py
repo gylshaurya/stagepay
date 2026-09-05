@@ -119,4 +119,94 @@ class WorkspaceTests(unittest.TestCase):
         with self.assertRaisesRegex(server.Problem,'already attempted'):server.perform(req)
         with self.assertRaisesRegex(server.Problem,'reconciliation'):self.act('join','freelancer')
 
+    def interrupt(self,request,method='eth_getTransactionReceipt'):
+        real=server.rpc
+        def fault(name,params=None):
+            result=real(name,params)
+            if name==method:raise OSError('Injected interruption after RPC result')
+            return result
+        with patch.object(server,'rpc',side_effect=fault):
+            with self.assertRaises(OSError):server.perform(request)
+
+    def test_known_receipt_applies_once_without_resending(self):
+        self.create();req=self.request('join','freelancer');self.interrupt(req)
+        before=server.rpc('eth_getTransactionCount',[self.cfg['freelancer'],'latest'])
+        recovered=server.reconcile();self.assertEqual(recovered['outcomes'][0]['state'],'done')
+        self.assertEqual(server.rpc('eth_getTransactionCount',[self.cfg['freelancer'],'latest']),before)
+        result=server.perform(req);self.assertEqual(result['project']['status'],'in_progress')
+        self.assertEqual(len(result['project']['history']),2)
+        self.assertEqual(server.reconcile()['outcomes'],[])
+        self.assertEqual(server.perform(req),result)
+
+    def test_lost_broadcast_hash_found_by_nonce(self):
+        self.create();req=self.request('join','freelancer');self.interrupt(req,'eth_sendTransaction')
+        self.assertIsNone(server.snapshot()['pending'][0]['tx'])
+        before=server.rpc('eth_getTransactionCount',[self.cfg['freelancer'],'latest'])
+        self.assertEqual(server.reconcile()['outcomes'][0]['state'],'done')
+        self.assertEqual(server.rpc('eth_getTransactionCount',[self.cfg['freelancer'],'latest']),before)
+        self.assertEqual(server.perform(req)['project']['status'],'in_progress')
+
+    def test_missing_receipt_and_mismatched_intent_stay_paused(self):
+        self.create();req=self.request('join','freelancer');self.interrupt(req);real=server.rpc
+        def unavailable(name,params=None):
+            if name=='eth_sendTransaction':self.fail('Recovery must never broadcast')
+            if name=='eth_getTransactionReceipt':return None
+            return real(name,params)
+        with patch.object(server,'rpc',side_effect=unavailable):
+            self.assertEqual(server.reconcile()['outcomes'][0]['state'],'pending')
+        def mismatch(name,params=None):
+            result=real(name,params)
+            if name=='eth_getTransactionByHash':result={**result,'input':'0x1234'}
+            if name=='eth_sendTransaction':self.fail('Recovery must never broadcast')
+            return result
+        with patch.object(server,'rpc',side_effect=mismatch):
+            self.assertEqual(server.reconcile()['outcomes'][0]['state'],'pending')
+        self.assertEqual(server.snapshot()['projects'][0]['status'],'awaiting_agreement')
+        self.assertEqual(server.reconcile()['outcomes'][0]['state'],'done')
+
+    def test_confirmed_revert_does_not_apply_project_change(self):
+        self.create();req=self.request('join','freelancer');real=server.rpc
+        def fault(name,params=None):
+            if name=='eth_sendTransaction':params=[{**params[0],'gas':hex(24000)}]
+            result=real(name,params)
+            if name=='eth_getTransactionReceipt':raise OSError('Lost reverted receipt response')
+            return result
+        with patch.object(server,'rpc',side_effect=fault):
+            with self.assertRaises(OSError):server.perform(req)
+        pending=server.snapshot()['pending'][0]
+        self.assertEqual(real('eth_getTransactionReceipt',[pending['tx']])['status'],'0x0')
+        self.assertEqual(server.reconcile()['outcomes'][0]['state'],'reverted')
+        self.assertEqual(server.snapshot()['projects'][0]['status'],'awaiting_agreement')
+        self.assertEqual(server.snapshot()['pending'],[])
+        self.act('join','freelancer');self.assertEqual(self.project['status'],'in_progress')
+
+    def test_interrupted_mint_resumes_saved_funding_without_duplicate_mint(self):
+        req=self.request('create',body={'title':'Recovered funding','scope':'Deliver the site.', 'milestones':[{'name':'Website','amount':'3'}],'acknowledge':True})
+        self.interrupt(req,'eth_sendTransaction')
+        self.assertEqual(server.reconcile()['outcomes'][0]['state'],'done')
+        self.assertEqual(server.snapshot()['resumable'][0]['id'],req['request_id'])
+        before=server.rpc('eth_getTransactionCount',[self.cfg['client'],'latest'])
+        result=server.resume(req['request_id'])
+        after=server.rpc('eth_getTransactionCount',[self.cfg['client'],'latest'])
+        self.assertEqual(int(after,16)-int(before,16),2) # Only approval and create remain.
+        self.assertEqual(result['project']['title'],'Recovered funding')
+        self.assertEqual(server.snapshot()['resumable'],[])
+        self.assertEqual(server.resume(req['request_id']),result)
+
+    def test_interrupted_create_applies_saved_agreement(self):
+        req=self.request('create',body={'title':'Recovered create','scope':'Deliver the site.', 'milestones':[{'name':'Website','amount':'3'}],'acknowledge':True})
+        real=server.rpc;calls=0
+        def fault(name,params=None):
+            nonlocal calls
+            result=real(name,params)
+            if name=='eth_getTransactionReceipt':
+                calls+=1
+                if calls==3:raise OSError('Create receipt response lost')
+            return result
+        with patch.object(server,'rpc',side_effect=fault):
+            with self.assertRaises(OSError):server.perform(req)
+        self.assertEqual(server.snapshot()['projects'],[])
+        self.assertEqual(server.reconcile()['outcomes'][0]['state'],'done')
+        self.assertEqual(server.perform(req)['project']['title'],'Recovered create')
+
 if __name__=='__main__':unittest.main()
