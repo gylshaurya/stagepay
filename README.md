@@ -2,7 +2,7 @@
 
 Stagepay is a milestone desk for student freelancers. The client sets aside test tokens, both people agree on the work, and each payment becomes available when the client accepts the submitted evidence.
 
-The local workspace includes agreement funding, delivery links, revision requests, milestone acceptance, scope changes, mutual settlement and receipt history. It calls real contracts on an isolated Anvil chain and saves project records in SQLite. The public wallet workspace is deployed on Sepolia and hosted for free at https://gylshaurya.github.io/stagepay/. The final video is still being recorded.
+The local workspace includes agreement funding, delivery links, revision requests, milestone acceptance, scope changes, mutual settlement and receipt history. It calls real contracts on an isolated Anvil chain and saves project records in SQLite. The public wallet workspace is deployed on Sepolia and hosted for free at https://gylshaurya.github.io/stagepay/. [Watch the captioned demo](https://github.com/gylshaurya/stagepay/releases/download/demo-v1/Stagepay-demo.mp4) (2 minutes 12 seconds).
 
 ## Run the workspace
 
@@ -80,7 +80,7 @@ No API key or wallet secret is needed for local tests. Future deployment must us
 - [Submission evidence still needed](docs/READINESS.md)
 - [Brief presentation outline](docs/PRESENTATION-OUTLINE.md)
 
-The demo plans are not a recorded video. Public deployment, playback and final submission approval remain pending.
+The earlier plans are retained as planning evidence. The completed recording is described in `demo/recorded/README.md`. Public deployment and full playback are verified; final submission still needs approval.
 
 ## Sources
 

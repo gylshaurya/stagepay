@@ -10,7 +10,7 @@ This is a working list, not an approval or a completed package. Keep the existin
 | Public app | Static wallet workspace with chain/code checks, shared text validation and a real read-only test agreement | GitHub Pages deployment succeeded; verify the final package commit and recording links |
 | Recovery | Confirmed, reverted, unavailable and mismatched receipts checked; saved funding can resume without duplicate minting | Old legacy intents or missing hashes outside the 128-block search need inspection |
 | Sponsor evidence | No named required sponsor in the checked rules | Recheck any updated sponsor or track requirements; show only code that is actually integrated |
-| Demo | Two storyboard plans and recording instructions | Record real actions, check actual duration, full playback, captions and public access |
+| Demo | 131.76-second actual browser recording; captions measured, full decode and browser playback passed | Include the public release asset in the exact final package |
 | Presentation | Five-part outline | Export the final format accepted by the organizer |
 | Event rules | Fresh public rules read on 6 September | Confirm final testnet route, any numeric demo limit and required presentation format; essential email already sent |
 | Final approval | Not granted | Prepare exact source, app, video, text and limitations for the user's approval |

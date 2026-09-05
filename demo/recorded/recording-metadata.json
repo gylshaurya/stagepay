@@ -1,0 +1,200 @@
+{
+  "source": "Real selected-browser tab screenshots during actual UI actions",
+  "scenes": [
+    {
+      "id": 1,
+      "start": 0,
+      "end": 4.669,
+      "caption": "Stagepay keeps work and its test-payment decisions together.",
+      "cps": 12.850717498393662
+    },
+    {
+      "id": 2,
+      "start": 4.669,
+      "end": 9.335999999999999,
+      "caption": "This walkthrough uses real local contracts and demo roles.",
+      "cps": 12.42768373687594
+    },
+    {
+      "id": 3,
+      "start": 9.335999999999999,
+      "end": 15.461999999999996,
+      "caption": "Write a clear scope for the guide handover.",
+      "cps": 7.019262161279793
+    },
+    {
+      "id": 4,
+      "start": 15.461999999999996,
+      "end": 21.073,
+      "caption": "Split the work into two payments: 10 and 20 DEMO.",
+      "cps": 8.732846194974151
+    },
+    {
+      "id": 5,
+      "start": 21.073,
+      "end": 25.756999999999998,
+      "caption": "Test tokens only. A dispute needs both people to settle.",
+      "cps": 11.955593509820673
+    },
+    {
+      "id": 6,
+      "start": 25.756999999999998,
+      "end": 30.856,
+      "caption": "Fund the agreement and wait for its confirmed receipt.",
+      "cps": 10.590311825848199
+    },
+    {
+      "id": 7,
+      "start": 30.856,
+      "end": 34.543,
+      "caption": "Switch to the freelancer and agree to the exact scope.",
+      "cps": 14.646053702196918
+    },
+    {
+      "id": 8,
+      "start": 34.543,
+      "end": 39.086999999999996,
+      "caption": "The agreement starts only after the freelancer accepts it.",
+      "cps": 12.764084507042263
+    },
+    {
+      "id": 9,
+      "start": 39.086999999999996,
+      "end": 44.59699999999999,
+      "caption": "Attach the first setup note and explain what is ready.",
+      "cps": 9.80036297640655
+    },
+    {
+      "id": 10,
+      "start": 44.59699999999999,
+      "end": 49.684999999999995,
+      "caption": "Submitting work records its hash. It does not release payment.",
+      "cps": 12.18553459119495
+    },
+    {
+      "id": 11,
+      "start": 49.684999999999995,
+      "end": 53.359,
+      "caption": "The client reviews the delivery before deciding.",
+      "cps": 13.064779531845376
+    },
+    {
+      "id": 12,
+      "start": 53.359,
+      "end": 56.45600000000001,
+      "caption": "Ask for the missing recovery steps.",
+      "cps": 11.301259283177238
+    },
+    {
+      "id": 13,
+      "start": 56.45600000000001,
+      "end": 61.514,
+      "caption": "A revision keeps all 30 DEMO in escrow.",
+      "cps": 7.710557532621601
+    },
+    {
+      "id": 14,
+      "start": 61.514,
+      "end": 65.201,
+      "caption": "The freelancer can now deliver the corrected guide.",
+      "cps": 13.83238405207492
+    },
+    {
+      "id": 15,
+      "start": 65.201,
+      "end": 70.74099999999999,
+      "caption": "Link the full setup guide and explain the correction.",
+      "cps": 9.566787003610122
+    },
+    {
+      "id": 16,
+      "start": 70.74099999999999,
+      "end": 74.81899999999999,
+      "caption": "Submit the revised evidence for a fresh review.",
+      "cps": 11.52525747915644
+    },
+    {
+      "id": 17,
+      "start": 74.81899999999999,
+      "end": 79.91300000000001,
+      "caption": "The client accepts this milestone once.",
+      "cps": 7.656065959952852
+    },
+    {
+      "id": 18,
+      "start": 79.91300000000001,
+      "end": 83.42000000000002,
+      "caption": "Accepted work stays paid when the remaining scope changes.",
+      "cps": 16.538351867693162
+    },
+    {
+      "id": 19,
+      "start": 83.42000000000002,
+      "end": 89.55100000000002,
+      "caption": "Clarify the unpaid guide without changing the accepted milestone.",
+      "cps": 10.601859403033762
+    },
+    {
+      "id": 20,
+      "start": 89.55100000000002,
+      "end": 93.21700000000001,
+      "caption": "The freelancer reviews the proposed change.",
+      "cps": 11.729405346426633
+    },
+    {
+      "id": 21,
+      "start": 93.21700000000001,
+      "end": 98.293,
+      "caption": "Both agree. The first 10 DEMO remains available as credit.",
+      "cps": 11.426319936958249
+    },
+    {
+      "id": 22,
+      "start": 98.293,
+      "end": 103.99600000000001,
+      "caption": "Withdraw the accepted payment. Unpaid work stays in escrow.",
+      "cps": 10.345432228651582
+    },
+    {
+      "id": 23,
+      "start": 103.99600000000001,
+      "end": 108.68,
+      "caption": "Export the record with its decisions and transaction receipts.",
+      "cps": 13.23654995730146
+    },
+    {
+      "id": 24,
+      "start": 108.68,
+      "end": 114.84699999999992,
+      "caption": "The hosted site has a separate, real Sepolia test agreement.",
+      "cps": 9.729203826820305
+    },
+    {
+      "id": 25,
+      "start": 114.84699999999992,
+      "end": 119.93900000000002,
+      "caption": "It is closed, with both parties\u2019 credits withdrawn.",
+      "cps": 10.015710919088573
+    },
+    {
+      "id": 26,
+      "start": 119.93900000000002,
+      "end": 126.0539999999998,
+      "caption": "Each confirmed transaction has a public explorer receipt.",
+      "cps": 9.32134096484089
+    },
+    {
+      "id": 27,
+      "start": 126.0539999999998,
+      "end": 131.75699999999978,
+      "caption": "Test tokens only. Shared scope, clear review, traceable decisions.",
+      "cps": 11.572856391373014
+    }
+  ],
+  "duration_seconds": 131.75699999999978,
+  "captured_frames_used": 645,
+  "average_source_fps": 4.8953755777681724,
+  "peak_caption_cps": 16.538351867693162,
+  "captions_over_17_cps": 0,
+  "editing": "Idle gaps between scenes trimmed; no action speedups. Captions added below the product viewport. One public-ending outtake retained separately."
+}

@@ -1,6 +1,6 @@
 # Stagepay
 
-Draft for the existing Devpost entry. Not approved for final submission. The public app is live. The final video link is still pending.
+Draft for the existing Devpost entry. Not approved for final submission. The public app is live. The captioned demo is recorded and playback-checked.
 
 ## Tagline
 
@@ -32,14 +32,14 @@ The local workflow covers funding, agreement, delivery, revisions, acceptance, s
 
 ## What is next
 
-The public wallet workspace, receipt recovery and free GitHub Pages deployment are complete. Both contracts have exact source matches on Sourcify, and a 13-transaction Sepolia walkthrough reached a closed agreement with all credits withdrawn. The final demo video still needs recording and playback review. Disputed tokens can remain locked if the people never agree, so this prototype should only use its test asset.
+The public wallet workspace, receipt recovery and free GitHub Pages deployment are complete. Both contracts have exact source matches on Sourcify, and a 13-transaction Sepolia walkthrough reached a closed agreement with all credits withdrawn. The captioned demo is 2 minutes 12 seconds and passed full playback. Disputed tokens can remain locked if the people never agree, so this prototype should only use its test asset.
 
 ## Links and built with
 
 - Source: https://github.com/gylshaurya/stagepay
 - Local setup: docs/SETUP.md
 - Public application: https://gylshaurya.github.io/stagepay/
-- Demo video: pending recording and playback review
+- Demo video: https://github.com/gylshaurya/stagepay/releases/download/demo-v1/Stagepay-demo.mp4
 - Built with: Solidity, OpenZeppelin Contracts, Foundry, Anvil, Python, SQLite, JavaScript, ethers, CSS, Source Sans 3, GitHub Pages.
 
 The event rules checked on 6 September do not name a required sponsor product. Stagepay uses smart-contract escrow as its blockchain component. Do not describe EAS, thirdweb or another sponsor SDK as integrated when the current code does not use it. Recheck the final rules and any organizer reply before preparing the exact submission package.

@@ -58,10 +58,10 @@ Stopping the workspace keeps its local chain and records. Anvil saves chain stat
 
 The service saves an intended transaction and sender nonce before broadcasting. If it cannot determine the result, later writes pause. This prevents an automatic second payment. Read-only records remain available.
 
-Preserve `.local/`. Inspect the pending action, its sender nonce and any transaction hash against the local node. A confirmed transaction must be reconciled with the saved project state before writes resume. Automatic recovery is not implemented in this version. Deleting a pending row or sending the action again is not a recovery procedure.
+Preserve `.local/`. Inspect the pending action, its sender nonce and any transaction hash against the local node. A confirmed transaction must be reconciled with the saved project state before writes resume. Use Check pending receipts to match the saved transaction and apply a confirmed action once. Reverted actions leave records unchanged; unknown or mismatched receipts keep writes paused. Continue funding resumes the exact saved request and skips confirmed setup steps. Lost hashes are searched within 128 recent blocks. Deleting a pending row or sending the action again is not a recovery procedure.
 
 If a second tab has an old project version, refresh it before deciding. If the local chain is unavailable, restart the owned chain and refresh the connection. If a port is occupied by another service, leave that service alone.
 
 ## Public deployment boundary
 
-This server signs with unlocked local demo accounts and binds only to loopback. A public version needs a browser wallet signer, suitable account access controls, a verified testnet deployment, an allowed free hosting route and public receipt links. A tunnel to this local signer is not that public version. The current source and local demonstration can be reviewed without those unfinished parts.
+This server signs with unlocked local demo accounts and binds only to loopback. A separate public wallet workspace is now available at https://gylshaurya.github.io/stagepay/. It uses verified Sepolia contracts, wallet confirmations, shared text in browser storage and public receipts. See PUBLIC-WORKSPACE.md. A tunnel to the local signer is not used for public access.

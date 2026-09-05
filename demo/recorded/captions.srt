@@ -1,0 +1,107 @@
+1
+00:00:00,000 --> 00:00:04,669
+Stagepay keeps work and its test-payment decisions together.
+
+2
+00:00:04,669 --> 00:00:09,336
+This walkthrough uses real local contracts and demo roles.
+
+3
+00:00:09,336 --> 00:00:15,462
+Write a clear scope for the guide handover.
+
+4
+00:00:15,462 --> 00:00:21,073
+Split the work into two payments: 10 and 20 DEMO.
+
+5
+00:00:21,073 --> 00:00:25,757
+Test tokens only. A dispute needs both people to settle.
+
+6
+00:00:25,757 --> 00:00:30,856
+Fund the agreement and wait for its confirmed receipt.
+
+7
+00:00:30,856 --> 00:00:34,543
+Switch to the freelancer and agree to the exact scope.
+
+8
+00:00:34,543 --> 00:00:39,087
+The agreement starts only after the freelancer accepts it.
+
+9
+00:00:39,087 --> 00:00:44,597
+Attach the first setup note and explain what is ready.
+
+10
+00:00:44,597 --> 00:00:49,685
+Submitting work records its hash. It does not release payment.
+
+11
+00:00:49,685 --> 00:00:53,359
+The client reviews the delivery before deciding.
+
+12
+00:00:53,359 --> 00:00:56,456
+Ask for the missing recovery steps.
+
+13
+00:00:56,456 --> 00:01:01,514
+A revision keeps all 30 DEMO in escrow.
+
+14
+00:01:01,514 --> 00:01:05,201
+The freelancer can now deliver the corrected guide.
+
+15
+00:01:05,201 --> 00:01:10,741
+Link the full setup guide and explain the correction.
+
+16
+00:01:10,741 --> 00:01:14,819
+Submit the revised evidence for a fresh review.
+
+17
+00:01:14,819 --> 00:01:19,913
+The client accepts this milestone once.
+
+18
+00:01:19,913 --> 00:01:23,420
+Accepted work stays paid when the remaining scope changes.
+
+19
+00:01:23,420 --> 00:01:29,551
+Clarify the unpaid guide without changing the accepted milestone.
+
+20
+00:01:29,551 --> 00:01:33,217
+The freelancer reviews the proposed change.
+
+21
+00:01:33,217 --> 00:01:38,293
+Both agree. The first 10 DEMO remains available as credit.
+
+22
+00:01:38,293 --> 00:01:43,996
+Withdraw the accepted payment. Unpaid work stays in escrow.
+
+23
+00:01:43,996 --> 00:01:48,680
+Export the record with its decisions and transaction receipts.
+
+24
+00:01:48,680 --> 00:01:54,847
+The hosted site has a separate, real Sepolia test agreement.
+
+25
+00:01:54,847 --> 00:01:59,939
+It is closed, with both parties’ credits withdrawn.
+
+26
+00:01:59,939 --> 00:02:06,054
+Each confirmed transaction has a public explorer receipt.
+
+27
+00:02:06,054 --> 00:02:11,757
+Test tokens only. Shared scope, clear review, traceable decisions.
