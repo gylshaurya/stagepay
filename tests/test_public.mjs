@@ -41,9 +41,10 @@ test('wallet flow checks shared hashes, roles, scope changes and settlement',asy
 test('lost wallet response is recovered without resending',async()=>{
  const before=await provider.getTransactionCount(await client.getAddress());
  const interrupted={provider,getAddress:()=>client.getAddress(),sendTransaction:async tx=>{await client.sendTransaction(tx);throw Error('Lost wallet response');}};
- await assert.rejects(()=>desk.send('mint',{amount:'1'},interrupted),/Lost/);assert.ok(desk.read().pending);
+ await assert.rejects(()=>desk.send('mint',{amount:'1',draftKey:'new:mint:'},interrupted),/Lost/);assert.ok(desk.read().pending);
  await assert.rejects(()=>desk.send('mint',{amount:'1'},client),/pending/);
- await desk.reconcile();assert.equal(desk.read().pending,null);
+ const originalReceipt=provider.getTransactionReceipt.bind(provider);provider.getTransactionReceipt=async()=>null;const waiting=await desk.reconcile();assert.equal(waiting.status,'pending');assert.equal(desk.read().pending.draftKey,'new:mint:');provider.getTransactionReceipt=originalReceipt;
+ const recovered=await desk.reconcile();assert.equal(recovered.status,'confirmed');assert.equal(recovered.draftKey,'new:mint:');assert.equal(desk.read().pending,null);
  await desk.reconcile();assert.equal(await provider.getTransactionCount(await client.getAddress()),before+1);
 });
 test.after(()=>provider.destroy());

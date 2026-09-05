@@ -7,7 +7,7 @@ This is a working list, not an approval or a completed package. Keep the existin
 | Source and setup | Public repository; local guide and pinned dependencies | Recheck the final commit from a clean setup |
 | Contract behavior | Local contract and service tests | Recheck failure paths for the deployed version |
 | Public testnet | Encrypted wallets, free faucet gas, two source-verified Sepolia deployments and 13 confirmed workflow transactions | Keep final deployment addresses and receipts in the submission package |
-| Public app | Static wallet workspace with chain/code checks, shared text validation and a real read-only test agreement | Verify the published GitHub Pages URL after deployment |
+| Public app | Static wallet workspace with chain/code checks, shared text validation and a real read-only test agreement | GitHub Pages deployment succeeded; verify the final package commit and recording links |
 | Recovery | Confirmed, reverted, unavailable and mismatched receipts checked; saved funding can resume without duplicate minting | Old legacy intents or missing hashes outside the 128-block search need inspection |
 | Sponsor evidence | No named required sponsor in the checked rules | Recheck any updated sponsor or track requirements; show only code that is actually integrated |
 | Demo | Two storyboard plans and recording instructions | Record real actions, check actual duration, full playback, captions and public access |

@@ -1,6 +1,6 @@
 ---
 name: "Stagepay"
-description: "A clear delivery desk for agreements, work evidence and local test-payment receipts."
+description: "A clear delivery desk for agreements, work evidence and test-payment receipts."
 colors:
   blue: "#245c92"
   blue-hover: "#164773"
@@ -121,7 +121,11 @@ The visual system is flat, moderately dense and explicit about state. Numbered w
 - Numbered delivery rows with written status and a small status dot.
 - Native disclosures keep evidence and secondary actions close to their context.
 
-This scan records `web/index.html`, `web/style.css` and `web/app.js` after the finish review. The source and its final CSS overrides take precedence over earlier direction notes. Route-specific strategy is recorded in the surface brief.
+The original scan records `web/index.html`, `web/style.css` and `web/app.js` after the local workspace finish review. That history remains the visual baseline. The source and its final CSS overrides take precedence over earlier direction notes. Route-specific strategy is recorded in the surface brief.
+
+The public workspace in `public-app` extends the same Delivery Desk identity to Ethereum Sepolia. It keeps the palette, Source Sans typography, flat sheets and numbered work rows. Connected wallet identity replaces the local Demo role selector; shared project text, confirmed receipts and an explicitly illustrative public example use the existing forms, notices and disclosure language.
+
+The public documentation pass inspected `artifacts/third-web-hack-2026/28/public-desktop.png` and `public-mobile.png` under the Hacky root. Both show the public test agreement mid-page. The mobile capture uses a 390 CSS px iframe; the surrounding grey area belongs to the preview harness. It confirms the visible agreement sheet above milestones at that width, but does not establish a complete top-viewport or full-page mobile visual review. This documentation pass is not the release or interaction-test verdict.
 
 ## Colors
 
@@ -174,6 +178,8 @@ The implemented project view places milestones and agreement in a grid of `minma
 
 The milestone anchor has a 16px scroll margin. Scope, evidence links and transaction hashes wrap rather than widening their containers.
 
+The public toolbar uses an Agreement ID field and Open agreement action alongside wallet status, Connect wallet and New agreement. It retains the inherited sheet spacing and responsive stacking. Its role comes from the connected wallet rather than a selectable demo identity. The shared-text import and receipt section follows the agreement and milestones.
+
 ## Elevation & Depth
 
 The system has no box shadows. White sheets, fine blue-gray borders and soft inset fills create grouping. Header contrast establishes identity; expanded disclosures expose content in the document flow. Nothing depends on hover lift or floating layers.
@@ -216,6 +222,14 @@ Milestone rows connect a circular sequence marker, work name, DEMO amount and st
 
 While an action is pending, the app marks itself busy and shows a live receipt-wait notice. Confirmed actions refresh the workspace and display saved feedback. This is a local Anvil demo with real local transaction receipts and test tokens; these components do not establish production authentication or public deployment.
 
+### Public Sepolia Workspace
+
+The public surface reuses these primitives without presenting the local role switch as authentication. A disconnected visitor can read an agreement; the toolbar states that editing requires a wallet, and New agreement is disabled. Wallet connection and transaction approval are separate steps, with explicit Sepolia and test-token context.
+
+Project text and receipts occupy a work sheet. A labeled native file input imports shared JSON, and Export project text is a secondary action. Supporting copy distinguishes browser-held text from on-chain hashes and names from verified identities. Scope and delivery match messages stay beside the text they describe. Receipt links lead to Etherscan rather than local chain details.
+
+A pending wallet action produces an amber notice with Check pending receipts. Recovery checks for a receipt without resending the transaction; additional actions stay paused while the outcome remains uncertain. Busy feedback and wallet-decline messages use the established live notice. The public example opens an illustrative test agreement and checks its public receipts before reporting confirmation. The example is not a claim of paid client work.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -225,6 +239,8 @@ While an action is pending, the app marks itself busy and shows a live receipt-w
 - Do keep long evidence URLs and hashes wrapping within their containers.
 - Do retain the compact two-column project and role controls on mobile, with connection and create controls on a separate row.
 - Do keep local-demo and test-token labels visible and put transaction details beside their receipts.
+- Do distinguish the public connected wallet from local demo roles, and keep shared-text verification beside the relevant scope or delivery.
+- Do label public examples as illustrative work and make pending-receipt recovery a clear action.
 
 ### Don't:
 

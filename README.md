@@ -2,7 +2,7 @@
 
 Stagepay is a milestone desk for student freelancers. The client sets aside test tokens, both people agree on the work, and each payment becomes available when the client accepts the submitted evidence.
 
-The local workspace includes agreement funding, delivery links, revision requests, milestone acceptance, scope changes, mutual settlement and receipt history. It calls real contracts on an isolated Anvil chain and saves project records in SQLite. Public testnet deployment and the final video are still being built.
+The local workspace includes agreement funding, delivery links, revision requests, milestone acceptance, scope changes, mutual settlement and receipt history. It calls real contracts on an isolated Anvil chain and saves project records in SQLite. The public wallet workspace is deployed on Sepolia and hosted for free at https://gylshaurya.github.io/stagepay/. The final video is still being recorded.
 
 ## Run the workspace
 
@@ -18,7 +18,7 @@ Open http://127.0.0.1:4321. Use the Client demo role to fund a project, switch t
 
 `npm stop` stops only the owned workspace process. `npm run dev` runs it in the foreground instead. The chain uses its own loopback port 18545 and persists under ignored `.local/`. The startup script refuses to take over an unrelated process. No wallet secret or API key is needed: Anvil supplies public, unlocked demo accounts. These accounts must never receive real funds.
 
-The network panel shows the actual contract and demo wallet addresses. Sepolia is explicitly unconfigured. A public version needs a wallet signer and a separate authenticated service before it can be deployed.
+The network panel shows the actual contract and demo wallet addresses. That local panel describes the Anvil workspace only. The separate public workspace connects to real Sepolia wallets and keeps readable text in the browser; it does not expose the local service.
 
 ## Verify the service
 

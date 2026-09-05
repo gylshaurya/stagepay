@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-05T20:08:24.626115+00:00",
+  "generatedAt": "2026-09-05T22:55:45.743749+00:00",
   "title": "Design System: Stagepay",
   "extensions": {
     "colorMeta": {
@@ -423,7 +423,31 @@
         "value": "900px"
       }
     ],
-    "tonalRampNote": "Synthesized OKLCH strips are panel previews, not additional colors used by the application."
+    "tonalRampNote": "Synthesized OKLCH strips are panel previews, not additional colors used by the application.",
+    "documentationHistory": [
+      {
+        "recordedAt": "2026-09-05T22:55:45.743749+00:00",
+        "scope": "Public Sepolia workspace extends the established Delivery Desk; original local workspace tokens and component history preserved.",
+        "sources": [
+          "public-app/index.html",
+          "public-app/app.mjs",
+          "public-app/core.mjs"
+        ],
+        "evidence": [
+          "artifacts/third-web-hack-2026/28/public-desktop.png",
+          "artifacts/third-web-hack-2026/28/public-mobile.png"
+        ],
+        "evidenceRoot": "Hacky",
+        "visualLimit": "Both screenshots are mid-page. Mobile is a 390 CSS px iframe with grey preview harness outside the app. No complete top-viewport or full-page mobile visual verdict is claimed."
+      }
+    ],
+    "publicWorkspace": {
+      "identity": "Connected Ethereum Sepolia wallet; local Demo role selector does not apply.",
+      "sharedText": "Labeled JSON import and secondary export within the existing work sheet. Match messages sit beside scope and delivery text.",
+      "recovery": "Amber pending-action notice with Check pending receipts; checking does not resend the transaction.",
+      "example": "Illustrative public test agreement with public receipt checks; not paid client work.",
+      "visualSystem": "Reuse the existing palette, Source Sans typography, flat sheets, written statuses and numbered work rows."
+    }
   },
   "components": [
     {
@@ -454,7 +478,7 @@
       "name": "Evidence Field",
       "kind": "input",
       "description": "Visible label and native URL input.",
-      "html": "<label class=\"ds-label\">Evidence link<input class=\"ds-input\" type=\"url\" placeholder=\"https://…\" required></label>",
+      "html": "<label class=\"ds-label\">Evidence link<input class=\"ds-input\" type=\"url\" placeholder=\"https://\u2026\" required></label>",
       "css": ".ds-label{font-family:Source Sans,'Trebuchet MS',sans-serif;display:block;font-size:.9rem;font-weight:600;color:var(--ink,#17334c);}.ds-input{font-family:Source Sans,'Trebuchet MS',sans-serif;display:block;margin-top:6px;width:100%;max-width:100%;font-size:.9rem;font-weight:600;padding:10px 12px;border:1px solid #a9bed0;border-radius:6px;background:#fff;color:var(--ink,#17334c);min-height:44px;}.ds-input::placeholder{color:#68788a;}.ds-input:focus-visible{outline:3px solid #4c86ba;outline-offset:4px;}",
       "refersTo": "input"
     },
@@ -491,7 +515,7 @@
   ],
   "narrative": {
     "northStar": "The Delivery Desk",
-    "overview": "Stagepay uses the clarity of a parcel tracking desk for collaborative project work. A pale blue canvas, navy identity band and white work sheets establish a calm, practical setting. Restrained blue actions and humanist typography make decisions easy to locate.\n\nThe visual system is flat, moderately dense and explicit about state. Numbered work rows, attached evidence and expandable receipts create continuity between an agreement and its outcome. Plain language and visible local-demo context keep the interface honest.",
+    "overview": "Stagepay uses the clarity of a parcel tracking desk for collaborative project work. A pale blue canvas, navy identity band and white work sheets establish a calm, practical setting. Restrained blue actions and humanist typography make decisions easy to locate.\n\nThe visual system is flat, moderately dense and explicit about state. Numbered work rows, attached evidence and expandable receipts create continuity between an agreement and its outcome. Plain language and visible local-demo context keep the interface honest.\n\nThe public workspace in `public-app` extends the same Delivery Desk identity to Ethereum Sepolia. It keeps the palette, Source Sans typography, flat sheets and numbered work rows. Connected wallet identity replaces the local Demo role selector; shared project text, confirmed receipts and an explicitly illustrative public example use the existing forms, notices and disclosure language.",
     "keyCharacteristics": [
       "Pale blue surroundings and white work sheets with quiet borders.",
       "Humanist type, compact labels and readable scope text.",
@@ -515,7 +539,9 @@
       "Do pair status color with a written state and retain visible keyboard focus.",
       "Do keep long evidence URLs and hashes wrapping within their containers.",
       "Do retain the compact two-column project and role controls on mobile, with connection and create controls on a separate row.",
-      "Do keep local-demo and test-token labels visible and put transaction details beside their receipts."
+      "Do keep local-demo and test-token labels visible and put transaction details beside their receipts.",
+      "Do distinguish the public connected wallet from local demo roles, and keep shared-text verification beside the relevant scope or delivery.",
+      "Do label public examples as illustrative work and make pending-receipt recovery a clear action."
     ],
     "donts": [
       "Don't add gradients, glow, decorative metric tiles or a speculative crypto dashboard.",

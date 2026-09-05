@@ -1,6 +1,6 @@
 # Stagepay
 
-Draft for the existing Devpost entry. Not approved for final submission. Deployment and video links are still pending.
+Draft for the existing Devpost entry. Not approved for final submission. The public app is live. The final video link is still pending.
 
 ## Tagline
 
@@ -18,9 +18,9 @@ Both people can agree to change the unpaid scope. Work that was already accepted
 
 ## How it was built
 
-The browser interface uses JavaScript, CSS and locally served Source Sans 3 fonts. A Python service stores the readable records in SQLite. Solidity contracts handle escrow, acceptance and withdrawals. OpenZeppelin provides the token implementation, safe transfers and reentrancy guard. Foundry runs the contract checks and the local Anvil chain.
+The public interface uses JavaScript, CSS, self-hosted Source Sans 3 fonts and ethers for wallet actions. Shared text stays in the browser and is checked against on-chain hashes when imported. A separate local workspace uses Python and SQLite. Solidity contracts handle escrow, acceptance and withdrawals. OpenZeppelin provides the token implementation, safe transfers and reentrancy guard. Foundry runs the contract checks and the local Anvil chain.
 
-Each acceptance checks the agreed scope and submitted evidence hashes. The service saves real local transaction receipts beside the work. The current version uses clearly labelled demo roles and test tokens. It is not a production payment service.
+Each acceptance checks the agreed scope and submitted evidence hashes. The public workspace links to real Sepolia receipts. The local version also supports clearly labelled demo roles. Both use test tokens. It is not a production payment service.
 
 ## Challenges
 
@@ -32,14 +32,14 @@ The local workflow covers funding, agreement, delivery, revisions, acceptance, s
 
 ## What is next
 
-Add public testnet wallet signing, finish receipt recovery and verify a free deployment. Public deployment and the final demo video are not ready yet. Disputed tokens can remain locked if the people never agree, so this prototype should only use its test asset.
+The public wallet workspace, receipt recovery and free GitHub Pages deployment are complete. Both contracts have exact source matches on Sourcify, and a 13-transaction Sepolia walkthrough reached a closed agreement with all credits withdrawn. The final demo video still needs recording and playback review. Disputed tokens can remain locked if the people never agree, so this prototype should only use its test asset.
 
 ## Links and built with
 
 - Source: https://github.com/gylshaurya/stagepay
 - Local setup: docs/SETUP.md
-- Public application: pending verified deployment
+- Public application: https://gylshaurya.github.io/stagepay/
 - Demo video: pending recording and playback review
-- Built with: Solidity, OpenZeppelin Contracts, Foundry, Anvil, Python, SQLite, JavaScript, CSS, Source Sans 3.
+- Built with: Solidity, OpenZeppelin Contracts, Foundry, Anvil, Python, SQLite, JavaScript, ethers, CSS, Source Sans 3, GitHub Pages.
 
 The event rules checked on 6 September do not name a required sponsor product. Stagepay uses smart-contract escrow as its blockchain component. Do not describe EAS, thirdweb or another sponsor SDK as integrated when the current code does not use it. Recheck the final rules and any organizer reply before preparing the exact submission package.
