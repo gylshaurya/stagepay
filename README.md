@@ -92,3 +92,7 @@ This is a test-token hackathon prototype. It has not had an independent security
 ## Public wallet workspace
 
 A static Sepolia wallet implementation is available in `public-app/`. See [Public workspace](docs/PUBLIC-WORKSPACE.md) for wallet actions, shared text, receipt recovery and encrypted test-wallet setup. Sepolia token and escrow deployments are now receipt-verified and source-verified on Sourcify. The release pins their bytecode hashes. See `docs/sepolia-deployment.json`; this remains test-token software, not a real-money service.
+
+## Presentation
+
+[Download the short presentation](docs/Stagepay-presentation.pptx). It explains the problem, workflow, contract rules and verified Sepolia example with real screenshots.

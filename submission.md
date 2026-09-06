@@ -43,3 +43,9 @@ The public wallet workspace, receipt recovery and free GitHub Pages deployment a
 - Built with: Solidity, OpenZeppelin Contracts, Foundry, Anvil, Python, SQLite, JavaScript, ethers, CSS, Source Sans 3, GitHub Pages.
 
 The event rules checked on 6 September do not name a required sponsor product. Stagepay uses smart-contract escrow as its blockchain component. Do not describe EAS, thirdweb or another sponsor SDK as integrated when the current code does not use it. Recheck the final rules and any organizer reply before preparing the exact submission package.
+
+## Presentation
+
+The reviewed six-slide deck is available at https://github.com/gylshaurya/stagepay/blob/main/docs/Stagepay-presentation.pptx.
+
+The existing Devpost draft needs an embed-compatible demo URL. The GitHub video is ready; its YouTube upload is waiting at the file picker. Do not mark the final package ready until the required link and actual saved form are verified.
